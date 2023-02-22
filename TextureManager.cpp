@@ -54,10 +54,11 @@ void TextureManager::loadSingleStreamAsset(int index, IExecutionEvent* execution
 			//std::u8string path_string = entry.path().u8string();
 
 			StreamAssetLoader* assetLoader = new StreamAssetLoader(entry.path().string(), executionEvent);
-			assetLoader->start();
+			//assetLoader->start();
 
 			//this->instantiateAsTexture(entry.path().string(), assetName, true);
 			//std::cout << "[TextureManager] Loaded streaming texture: " << assetName << std::endl;
+			std::cout << fileNum << std::endl;
 			break;
 		}
 

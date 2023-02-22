@@ -27,3 +27,11 @@ void StreamAssetLoader::run()
 	this->execEvent->onFinishedExecution();
 	delete this;
 }
+
+void StreamAssetLoader::onStartTask()
+{
+	TextureManager::getInstance()->instantiateAsTexture(this->path, "wew", true);
+
+	this->execEvent->onFinishedExecution();
+	delete this;
+}
