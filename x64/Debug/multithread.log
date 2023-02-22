@@ -1,0 +1,5 @@
+﻿  TextureDisplay.cpp
+D:\Acads\GDENG2\Multi Threading\multithread\multithread\TextureDisplay.cpp(48,73): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Acads\GDENG2\Multi Threading\multithread\multithread\TextureDisplay.cpp(53,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Acads\GDENG2\Multi Threading\multithread\multithread\TextureDisplay.cpp(54,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  multithread.vcxproj -> D:\Acads\GDENG2\Multi Threading\multithread\x64\Debug\multithread.exe
