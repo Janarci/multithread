@@ -1,4 +1,6 @@
 #include "ThreadPool.h"
+
+#include "BaseRunner.h"
 #include "PoolWorkerThread.h"
 
 
@@ -37,44 +39,79 @@ void ThreadPool::stopScheduler()
 void ThreadPool::scheduleTask(IWorkerAction* action)
 {
 	this->pendingActions.push(action);
+	//std::cout <<"here"<< std::endl;
+
 }
 
 void ThreadPool::run()
 {
-	while (this->running)
+
+	while (running)
 	{
-		//are there any pending actions and is there an available worker?
-		if (this->pendingActions.empty() == false)
+
+		//std::cout << ticks << std::endl;
+
+		if (!this->pendingActions.empty())
 		{
-			if (this->inactiveThreads.empty() == false)
+			//std::cout << pendingActions.size() << std::endl;
+
+			if (!this->inactiveThreads.empty())
 			{
-				//schedule the task
-				PoolWorkerThread* workerThread = this->inactiveThreads.front();
+
+				//std::cout << inactiveThreads.size() << std::endl;
+
+				PoolWorkerThread* WorkerThread = this->inactiveThreads.front();
+				//this->activeThreads.insert({ 0, WorkerThread });
+				this->activeThreads[WorkerThread->getThreadID()] = WorkerThread;
 				this->inactiveThreads.pop();
-				this->activeThreads[workerThread->getThreadID()] = workerThread;
 
-				workerThread->assignTask(this->pendingActions.front());
-				workerThread->start();
-				this->pendingActions.pop();
-			}
-			else
-			{
-				//std::cout << "[ThreadPool " << this->name << "] No more available worker threads. Available threads: " << this->inactiveThreads.size() << std::endl;
-			}
+				this->activeThreads[WorkerThread->getThreadID()];
+				WorkerThread->assignTask(pendingActions.front());
+				pendingActions.pop();
+				//this->activeThreads[WorkerThread->getThreadID()]->start();
+				WorkerThread->start();
 
+				//if (activeThreads.size()>1)
+				//{
+				//	for (auto i : activeThreads)
+				//	{
+				//		//PoolWorkerThread* workerThread = i.second;
+				//		i.second->start();
+				//		//workerThread->start();
+				//		//std::cout << i.first << "    " << i.second << std::endl;
+
+				//	}
+				//}
+				
+
+			}
 		}
-		else
-		{
-			//std::cout << "[ThreadPool " << this->name << "] No actions scheduled." << std::endl;
-		}
+	//IETThread::sleep(1000);
+		//std::cout << activeThreads.size() << std::endl;
+		//if (activeThreads.size() >=  4 && this->ticks > this->delay)
+		//	{
+		//		this->ticks = 0.0f;
+		//		for (auto i : activeThreads)
+		//		{
+		//			//std::cout << i.first << std::endl;
+
+		//			//PoolWorkerThread* workerThread = i.second;
+		//			i.second->start();
+		//			//workerThread->start();
+		//			//std::cout << i.first << "    " << i.second << std::endl;
+
+		//		}
+		//	}
 	}
+
 }
 
 void ThreadPool::onFinished(int threadID)
 {
-	if (this->activeThreads[threadID] != nullptr)
+	if (this->activeThreads[threadID])
 	{
-		//create a fresh instance of a thread worker after execution
+
+		//std::cout <<"this is size"<<inactiveThreads.size() << std::endl;
 		delete this->activeThreads[threadID];
 		this->activeThreads.erase(threadID);
 

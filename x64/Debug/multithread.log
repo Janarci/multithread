@@ -1,4 +1,2 @@
-﻿  TextureManager.cpp
-D:\Acads\GDENG2\Multi Threading\multithread\multithread\TextureManager.cpp(83,3): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-D:\Acads\GDENG2\Multi Threading\multithread\multithread\TextureManager.cpp(98,2): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+﻿  ThreadPool.cpp
   multithread.vcxproj -> D:\Acads\GDENG2\Multi Threading\multithread\x64\Debug\multithread.exe

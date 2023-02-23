@@ -11,9 +11,6 @@ public:
 	virtual void onFinished(int threadID) = 0;
 };
 
-/// <summary>
-/// Class that can hold N workers/threads that can be reused. This is a thread itself, because it needs to constantly schedule tasks.
-/// </summary>
 class ThreadPool : public IETThread, public IFinishedTask
 {
 private:
@@ -37,7 +34,8 @@ private:
 	String name;
 	bool running = false;
 	int numWorkers = 0;
+
 	ActiveThreadMap activeThreads;
 	ThreadList inactiveThreads;
-	ActionList pendingActions;
+	ActionList pendingActions; // the things to execute
 };

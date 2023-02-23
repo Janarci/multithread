@@ -1,5 +1,7 @@
 #pragma once
 #include <unordered_map>
+#include "ThreadPool.h"
+
 #include "SFML/Graphics.hpp"
 class IExecutionEvent;
 class TextureManager
@@ -12,6 +14,7 @@ public:
 public:
 	static TextureManager* getInstance();
 	void loadFromAssetList(); //loading of all assets needed for startup
+	void loadStreamingAssets();
 	void loadSingleStreamAsset(int index, IExecutionEvent* executionEvent); //loads a single streaming asset based on index in directory
 	sf::Texture* getFromTextureMap(const String assetName, int frameIndex);
 	int getNumFrames(const String assetName);
@@ -31,6 +34,7 @@ private:
 	HashTable textureMap;
 	TextureList baseTextureList;
 	TextureList streamTextureList;
+	ThreadPool* threadPool = new ThreadPool("newThread", 4);
 
 	const std::string STREAMING_PATH = "Media/Streaming/";
 

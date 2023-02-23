@@ -27,6 +27,7 @@ void TextureDisplay::update(sf::Time deltaTime)
 
 	if (this->streamingType == StreamingType::SINGLE_STREAM && this->ticks > this->STREAMING_LOAD_DELAY)
 	{
+
 		this->ticks = 0.0f;
 		TextureManager::getInstance()->loadSingleStreamAsset(this->numDisplayed, this);
 		//spawnObject();

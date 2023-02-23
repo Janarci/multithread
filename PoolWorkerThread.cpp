@@ -24,6 +24,11 @@ void PoolWorkerThread::assignTask(IWorkerAction* action)
 
 void PoolWorkerThread::run()
 {
+
 	this->action->onStartTask();
+
+
 	this->finishedTask->onFinished(this->id);
+
+
 }
