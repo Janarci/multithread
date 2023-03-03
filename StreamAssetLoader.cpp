@@ -19,7 +19,7 @@ StreamAssetLoader::~StreamAssetLoader()
 
 void StreamAssetLoader::onStartTask()
 {
-
+	IETThread::sleep(1000);
 	TextureManager::getInstance()->instantiateAsTexture(this->path, "wew", true);
 
 	this->execEvent->onFinishedExecution();

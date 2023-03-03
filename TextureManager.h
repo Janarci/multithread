@@ -34,7 +34,7 @@ private:
 	HashTable textureMap;
 	TextureList baseTextureList;
 	TextureList streamTextureList;
-	ThreadPool* threadPool = new ThreadPool("newThread", 4);
+	ThreadPool* threadPool = new ThreadPool("newThread", 8);
 
 	const std::string STREAMING_PATH = "Media/Streaming/";
 
