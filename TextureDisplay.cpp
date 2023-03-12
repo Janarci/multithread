@@ -1,5 +1,7 @@
 #include "TextureDisplay.h"
 #include <iostream>
+
+#include "AudioManager.h"
 #include "TextureManager.h"
 #include "BaseRunner.h"
 #include "GameObjectManager.h"
@@ -29,7 +31,9 @@ void TextureDisplay::update(sf::Time deltaTime)
 	{
 
 		this->ticks = 0.0f;
-		TextureManager::getInstance()->loadSingleStreamAsset(this->numDisplayed, this);
+		//TextureManager::getInstance()->loadSingleStreamAsset(this->numDisplayed, this);
+		AudioManager::getInstance()->LoadAudio(numDisplayed, this);
+
 		//spawnObject();
 
 		this->numDisplayed++;
@@ -39,7 +43,10 @@ void TextureDisplay::update(sf::Time deltaTime)
 
 void TextureDisplay::onFinishedExecution()
 {
-	spawnObject();
+	//spawnObject();
+	AudioManager::getInstance()->soundList[0]->play();
+	AudioManager::getInstance()->soundList[0]->setVolume(20);
+
 
 }
 
